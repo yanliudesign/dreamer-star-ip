@@ -1,0 +1,1108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>小星妍动作库 · 48 个可视化预览</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=JetBrains+Mono:wght@400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fbf8f0;
+    --paper-2: #f2ecdc;
+    --ink: #1a1614;
+    --ink-light: #4a4238;
+    --honey: #e8c98a;
+    --honey-deep: #c89a3a;
+    --red: #d64545;
+    --blue: #2e5c8a;
+    --orange: #e07b2c;
+    --line: #d9d1bd;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Noto Serif SC", "Songti SC", serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  code, .mono { font-family: "JetBrains Mono", monospace; }
+
+  header.hero {
+    padding: 48px clamp(20px, 5vw, 64px) 24px;
+    border-bottom: 1px dashed var(--line);
+  }
+  .kicker {
+    font-size: 12px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-size: clamp(26px, 3.4vw, 38px);
+    margin: 0 0 12px;
+    font-weight: 700;
+  }
+  h1 .honey {
+    display: inline-block;
+    position: relative;
+  }
+  h1 .honey::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 3px;
+    height: 8px;
+    background: var(--honey);
+    z-index: -1;
+    opacity: 0.55;
+    border-radius: 2px;
+  }
+  .lede {
+    color: var(--ink-light);
+    max-width: 720px;
+    line-height: 1.7;
+    margin: 6px 0 0;
+    font-size: 15px;
+  }
+
+  nav.jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  nav.jump a {
+    padding: 6px 14px;
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13px;
+    transition: all 0.15s;
+  }
+  nav.jump a:hover {
+    border-color: var(--honey-deep);
+    background: var(--paper-2);
+  }
+
+  main { padding: 8px clamp(20px, 5vw, 64px) 60px; max-width: 1400px; margin: 0 auto; }
+
+  section.category {
+    margin-top: 40px;
+    scroll-margin-top: 20px;
+  }
+  section.category > h2 {
+    font-size: 20px;
+    margin: 0 0 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  section.category > h2 .badge {
+    background: var(--ink);
+    color: var(--paper);
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.1em;
+  }
+  section.category > .sub {
+    color: var(--ink-light);
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+  .card:hover {
+    border-color: var(--honey-deep);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+  }
+  .card svg {
+    width: 130px;
+    height: 130px;
+  }
+  .card .label {
+    margin-top: 4px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .card .code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: var(--honey-deep);
+    letter-spacing: 0.05em;
+  }
+  .card .name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .card .context {
+    font-size: 12px;
+    color: var(--ink-light);
+    text-align: center;
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  footer.foot {
+    margin-top: 60px;
+    padding: 28px clamp(20px, 5vw, 64px);
+    background: var(--paper-2);
+    border-top: 1px dashed var(--line);
+    color: var(--ink-light);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  footer.foot h3 { color: var(--ink); font-size: 16px; margin-top: 0; }
+  footer.foot code {
+    background: white;
+    padding: 1px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    font-size: 12px;
+  }
+  footer.foot a { color: var(--honey-deep); text-decoration: none; }
+  footer.foot a:hover { text-decoration: underline; }
+
+  /* Dreamer arc styling */
+  .dreamer-text {
+    font-family: "Caveat", cursive;
+    font-size: 10px;
+    fill: var(--honey-deep);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- Reusable SVG definitions -->
+<svg width="0" height="0" style="position: absolute;">
+  <defs>
+    <!-- Base star body: warm-black outline, honey-yellow fill, slightly wobbly -->
+    <symbol id="star" viewBox="0 0 120 120">
+      <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+            fill="#e8c98a" stroke="#1a1614" stroke-width="2.4" stroke-linejoin="round"/>
+      <!-- eyes -->
+      <circle cx="52" cy="41" r="2.1" fill="#1a1614"/>
+      <circle cx="68" cy="41" r="2.1" fill="#1a1614"/>
+      <!-- legs -->
+      <line x1="47" y1="90" x2="44" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      <line x1="73" y1="90" x2="76" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- hatching on lower-right (3 tiny strokes) -->
+      <line x1="72" y1="72" x2="80" y2="78" stroke="#1a1614" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+      <line x1="76" y1="68" x2="82" y2="73" stroke="#1a1614" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+      <line x1="80" y1="63" x2="84" y2="67" stroke="#1a1614" stroke-width="1.1" stroke-linecap="round" opacity="0.7"/>
+    </symbol>
+
+    <!-- Dreamer arc above head -->
+    <path id="dreamer-path" d="M 40 12 Q 60 4 80 12" fill="none"/>
+  </defs>
+</svg>
+
+<header class="hero">
+  <div class="kicker">Dreamer 妍妍 · 动作库预览</div>
+  <h1>小星妍 <span class="honey">48 个动作</span> · 视觉版</h1>
+  <p class="lede">
+    每张缩略图是一个动作的极简示意。想用哪个 → 记下编号（比如 <code>A3</code>）→ 回到
+    <code>action-library.md</code> 找对应的完整动作段 → 嵌入 prompt 骨架 → 跑图。
+  </p>
+  <nav class="jump">
+    <a href="#A">A · 独家动作</a>
+    <a href="#B">B · 通用姿势</a>
+    <a href="#C">C · 情境套装</a>
+    <a href="#D">D · 表情包基底</a>
+    <a href="#E">E · 求职专题</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============================================ -->
+<!-- A · 独家动作（只有五角星能做）              -->
+<!-- ============================================ -->
+<section class="category" id="A">
+  <h2><span class="badge">A</span> 独家动作</h2>
+  <div class="sub">只有五角星形态才能做的动作 · 打造 IP 记忆点</div>
+  <div class="grid">
+
+    <!-- A1 尖角当箭头 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- arrow from upper-right tip pointing at a small block -->
+        <line x1="98" y1="42" x2="112" y2="30" stroke="#e07b2c" stroke-width="1.6"/>
+        <polygon points="112,30 108,32 110,34" fill="#e07b2c"/>
+        <rect x="102" y="18" width="12" height="9" fill="none" stroke="#d64545" stroke-width="1.6"/>
+      </svg>
+      <div class="label"><span class="code">A1</span><span class="name">尖角当箭头</span></div>
+      <div class="context">指出关键点 · "看这里"</div>
+    </div>
+
+    <!-- A2 卡在方框里 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <rect x="18" y="14" width="84" height="60" fill="none" stroke="#1a1614" stroke-width="2" stroke-dasharray="3 2"/>
+        <!-- star pokes out at top -->
+        <g transform="translate(0, 30)">
+          <use href="#star"/>
+        </g>
+        <text x="60" y="112" text-anchor="middle" font-size="8" fill="#d64545" font-family="'Caveat',cursive">塞不进</text>
+      </svg>
+      <div class="label"><span class="code">A2</span><span class="name">卡在方框里</span></div>
+      <div class="context">不适合 · 塞不进这个框</div>
+    </div>
+
+    <!-- A3 尖角断一根 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- broken tip drifting up-right, connected by dashed line -->
+        <polygon points="105,20 112,28 100,26" fill="#e8c98a" stroke="#1a1614" stroke-width="1.8" stroke-linejoin="round"/>
+        <line x1="72" y1="45" x2="102" y2="24" stroke="#1a1614" stroke-width="1" stroke-dasharray="2 2"/>
+        <!-- star dust dots -->
+        <circle cx="82" cy="38" r="1" fill="#1a1614"/>
+        <circle cx="90" cy="32" r="1" fill="#1a1614"/>
+        <circle cx="96" cy="30" r="0.8" fill="#1a1614"/>
+        <!-- band-aid on ground -->
+        <rect x="35" y="105" width="14" height="4" fill="#f2ecdc" stroke="#1a1614" stroke-width="1" rx="1"/>
+        <line x1="42" y1="105" x2="42" y2="109" stroke="#1a1614" stroke-width="0.8"/>
+      </svg>
+      <div class="label"><span class="code">A3</span><span class="name">尖角断一根</span></div>
+      <div class="context">挫败/修复 · 掉了一块</div>
+    </div>
+
+    <!-- A4 星星撞星 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- main star, smaller and shifted left -->
+        <g transform="translate(-20, 0) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- second smaller star on right -->
+        <g transform="translate(35, 15) scale(0.55)">
+          <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+                fill="#e8c98a" stroke="#1a1614" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="52" cy="41" r="3" fill="#1a1614"/>
+          <circle cx="68" cy="41" r="3" fill="#1a1614"/>
+        </g>
+        <!-- spark at contact -->
+        <g transform="translate(72, 58)">
+          <line x1="0" y1="0" x2="4" y2="4" stroke="#d64545" stroke-width="1.4"/>
+          <line x1="0" y1="0" x2="-4" y2="-4" stroke="#d64545" stroke-width="1.4"/>
+          <line x1="0" y1="0" x2="5" y2="-3" stroke="#d64545" stroke-width="1.4"/>
+          <line x1="0" y1="0" x2="-3" y2="5" stroke="#d64545" stroke-width="1.4"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">A4</span><span class="name">星星撞星</span></div>
+      <div class="context">想法碰撞 · 灵感 spark</div>
+    </div>
+
+    <!-- A5 Dreamer 弧变形 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- tangled Dreamer -->
+        <path d="M 30 12 Q 40 4 45 14 Q 50 22 60 10 Q 70 -2 75 12 Q 80 22 90 12"
+              fill="none" stroke="#c89a3a" stroke-width="1.5"/>
+        <use href="#star"/>
+      </svg>
+      <div class="label"><span class="code">A5</span><span class="name">Dreamer 弧变形</span></div>
+      <div class="context">脑洞乱转 · 想太多</div>
+    </div>
+
+    <!-- A6 抱小小星 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- inner tiny star -->
+        <g transform="translate(38, 40) scale(0.36)">
+          <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+                fill="#e8c98a" stroke="#1a1614" stroke-width="4" stroke-linejoin="round"/>
+          <circle cx="52" cy="43" r="5" fill="#1a1614"/>
+          <circle cx="68" cy="43" r="5" fill="#1a1614"/>
+        </g>
+        <!-- tiny heart above -->
+        <path d="M 88 20 Q 85 15 82 20 Q 82 24 88 30 Q 94 24 94 20 Q 91 15 88 20" fill="#d64545" opacity="0.75"/>
+      </svg>
+      <div class="label"><span class="code">A6</span><span class="name">怀里抱小小星</span></div>
+      <div class="context">初心 · 那个最初的自己</div>
+    </div>
+
+    <!-- A7 星星翻个滚 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="rotate(180 60 60)">
+          <use href="#star"/>
+        </g>
+        <!-- rotation arrow -->
+        <path d="M 15 60 A 45 45 0 0 1 60 15" fill="none" stroke="#e07b2c" stroke-width="1.5"/>
+        <polygon points="60,15 55,12 58,20" fill="#e07b2c"/>
+      </svg>
+      <div class="label"><span class="code">A7</span><span class="name">星星翻个滚</span></div>
+      <div class="context">世界颠倒 · 换个角度</div>
+    </div>
+
+    <!-- A8 脱下外壳 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- outer shell (dashed) -->
+        <path d="M 60 8 L 74 42 L 112 45 L 82 70 L 92 108 L 60 87 L 28 108 L 38 70 L 8 45 L 46 42 Z"
+              fill="none" stroke="#1a1614" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.55"/>
+        <!-- inner smaller star -->
+        <g transform="translate(15, 25) scale(0.75)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">A8</span><span class="name">脱下外壳</span></div>
+      <div class="context">卸下 title · 只是我自己</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- B · 通用姿势                                  -->
+<!-- ============================================ -->
+<section class="category" id="B">
+  <h2><span class="badge">B</span> 通用姿势</h2>
+  <div class="sub">表达情绪意图 · 任何主题都能用</div>
+  <div class="grid">
+
+    <!-- B1 托腮 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <g transform="rotate(-8 60 60)">
+          <use href="#star"/>
+        </g>
+        <!-- arm bent to cheek -->
+        <path d="M 92 55 Q 78 60 70 48" fill="none" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">B1</span><span class="name">单尖角托腮</span></div>
+      <div class="context">沉思 · 我在想一件事</div>
+    </div>
+
+    <!-- B2 双手叉腰 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <path d="M 18 47 Q 30 62 40 60" fill="none" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 102 47 Q 90 62 80 60" fill="none" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">B2</span><span class="name">双手叉腰</span></div>
+      <div class="context">不服 · 凭什么</div>
+    </div>
+
+    <!-- B3 摊手 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <line x1="18" y1="47" x2="5" y2="65" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="102" y1="47" x2="115" y2="65" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="60" y="30" text-anchor="middle" font-size="10" fill="#1a1614" font-family="'Caveat',cursive">…</text>
+      </svg>
+      <div class="label"><span class="code">B3</span><span class="name">摊手</span></div>
+      <div class="context">无奈 · 我尽力了</div>
+    </div>
+
+    <!-- B4 举手 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <use href="#star"/>
+        <line x1="18" y1="47" x2="4" y2="12" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <text x="30" y="18" font-size="14" fill="#d64545" font-family="'Caveat',cursive">?</text>
+      </svg>
+      <div class="label"><span class="code">B4</span><span class="name">举手</span></div>
+      <div class="context">我有问题 · 老师</div>
+    </div>
+
+    <!-- B5 蹲下 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, 25) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <text x="60" y="20" text-anchor="middle" font-size="10" fill="#1a1614" opacity="0.5" font-family="'Caveat',cursive">…</text>
+      </svg>
+      <div class="label"><span class="code">B5</span><span class="name">蹲下</span></div>
+      <div class="context">挫败 · 想蹲一会儿</div>
+    </div>
+
+    <!-- B6 弹跳起来 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, -15)">
+          <use href="#star"/>
+        </g>
+        <!-- movement lines under feet -->
+        <line x1="35" y1="98" x2="42" y2="105" stroke="#1a1614" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="60" y1="102" x2="60" y2="110" stroke="#1a1614" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="85" y1="98" x2="78" y2="105" stroke="#1a1614" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- lightbulb overhead -->
+        <circle cx="60" cy="4" r="4" fill="#e8c98a" stroke="#c89a3a" stroke-width="1"/>
+        <line x1="58" y1="8" x2="62" y2="8" stroke="#1a1614" stroke-width="1"/>
+      </svg>
+      <div class="label"><span class="code">B6</span><span class="name">弹跳起来</span></div>
+      <div class="context">Aha! · 顿悟</div>
+    </div>
+
+    <!-- B7 躺平 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="rotate(90 60 60) translate(0, 15) scale(0.85)">
+          <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+                fill="#e8c98a" stroke="#1a1614" stroke-width="2.4" stroke-linejoin="round"/>
+          <!-- closed eyes -->
+          <line x1="49" y1="41" x2="55" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="65" y1="41" x2="71" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+        <!-- Zzz -->
+        <text x="100" y="30" font-size="12" fill="#c89a3a" font-family="'Caveat',cursive">Zzz</text>
+        <line x1="15" y1="102" x2="105" y2="102" stroke="#1a1614" stroke-width="1" opacity="0.4"/>
+      </svg>
+      <div class="label"><span class="code">B7</span><span class="name">躺平</span></div>
+      <div class="context">累 · 今天到此为止</div>
+    </div>
+
+    <!-- B8 单腿站 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- override legs: one standing, one bent -->
+        <rect x="43" y="90" width="8" height="18" fill="#fbf8f0"/>
+        <rect x="72" y="88" width="8" height="20" fill="#fbf8f0"/>
+        <line x1="47" y1="90" x2="47" y2="112" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M 74 90 Q 88 92 80 78" fill="none" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">B8</span><span class="name">单腿站</span></div>
+      <div class="context">专注 · 心流</div>
+    </div>
+
+    <!-- B9 抱膝坐 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, 30) scale(0.75)">
+          <use href="#star"/>
+        </g>
+        <text x="102" y="30" font-size="9" fill="#1a1614" opacity="0.5" font-family="'Caveat',cursive">…</text>
+      </svg>
+      <div class="label"><span class="code">B9</span><span class="name">抱膝坐</span></div>
+      <div class="context">脆弱 · 独处</div>
+    </div>
+
+    <!-- B10 转身走开 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- back view: no eyes, only outline + Dreamer arc -->
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+              fill="#e8c98a" stroke="#1a1614" stroke-width="2.4" stroke-linejoin="round"/>
+        <line x1="47" y1="90" x2="52" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="73" y1="90" x2="80" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        <!-- direction arrow -->
+        <line x1="95" y1="60" x2="108" y2="60" stroke="#c89a3a" stroke-width="1.5"/>
+        <polygon points="108,60 104,57 104,63" fill="#c89a3a"/>
+      </svg>
+      <div class="label"><span class="code">B10</span><span class="name">转身走开</span></div>
+      <div class="context">拒绝 · 我走了</div>
+    </div>
+
+    <!-- B11 藏在小方块后 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- star behind, only upper half visible -->
+        <clipPath id="peek-clip">
+          <rect x="0" y="0" width="120" height="70"/>
+        </clipPath>
+        <g clip-path="url(#peek-clip)">
+          <use href="#star"/>
+        </g>
+        <!-- block in front -->
+        <rect x="25" y="70" width="70" height="40" fill="#f2ecdc" stroke="#1a1614" stroke-width="2"/>
+      </svg>
+      <div class="label"><span class="code">B11</span><span class="name">藏方块后</span></div>
+      <div class="context">社恐 · 我先看看</div>
+    </div>
+
+    <!-- B12 从窗户探头 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- window frame -->
+        <rect x="20" y="20" width="80" height="70" fill="#fbf8f0" stroke="#1a1614" stroke-width="2"/>
+        <line x1="60" y1="20" x2="60" y2="90" stroke="#1a1614" stroke-width="1.5"/>
+        <line x1="20" y1="55" x2="100" y2="55" stroke="#1a1614" stroke-width="1.5"/>
+        <!-- star peeking from top-left pane -->
+        <g transform="translate(-2, -6) scale(0.55)">
+          <use href="#star"/>
+        </g>
+        <text x="80" y="15" text-anchor="middle" font-size="9" fill="#d64545" font-family="'Caveat',cursive">?</text>
+      </svg>
+      <div class="label"><span class="code">B12</span><span class="name">窗户探头</span></div>
+      <div class="context">好奇 · 发生什么了</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- C · 情境套装                                  -->
+<!-- ============================================ -->
+<section class="category" id="C">
+  <h2><span class="badge">C</span> 情境套装</h2>
+  <div class="sub">一套动作讲一个故事 · 角色扮演</div>
+  <div class="grid">
+
+    <!-- C1 写作者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- pen -->
+        <line x1="102" y1="47" x2="105" y2="26" stroke="#1a1614" stroke-width="2" stroke-linecap="round"/>
+        <polygon points="105,26 108,32 102,32" fill="#1a1614"/>
+        <!-- paper below -->
+        <rect x="20" y="98" width="80" height="18" fill="white" stroke="#1a1614" stroke-width="1.4"/>
+      </svg>
+      <div class="label"><span class="code">C1</span><span class="name">写作者</span></div>
+      <div class="context">举笔要落笔 · 灵感来的瞬间</div>
+    </div>
+
+    <!-- C2 侦探 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- magnifying glass -->
+        <circle cx="106" cy="30" r="10" fill="none" stroke="#1a1614" stroke-width="2"/>
+        <line x1="102" y1="47" x2="99" y2="38" stroke="#1a1614" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">C2</span><span class="name">侦探</span></div>
+      <div class="context">举放大镜 · 深挖</div>
+    </div>
+
+    <!-- C3 花匠 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(-10, 20) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- watering can -->
+        <rect x="72" y="60" width="14" height="14" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.6"/>
+        <line x1="86" y1="65" x2="94" y2="60" stroke="#1a1614" stroke-width="1.6"/>
+        <!-- water drop -->
+        <circle cx="97" cy="70" r="1.5" fill="#2e5c8a"/>
+        <!-- sprout -->
+        <line x1="102" y1="102" x2="102" y2="94" stroke="#1a1614" stroke-width="1.5"/>
+        <path d="M 102 94 Q 96 90 96 96" fill="none" stroke="#1a1614" stroke-width="1.5"/>
+        <path d="M 102 94 Q 108 90 108 96" fill="none" stroke="#1a1614" stroke-width="1.5"/>
+        <path d="M 92 102 Q 102 108 112 102" fill="none" stroke="#1a1614" stroke-width="1"/>
+      </svg>
+      <div class="label"><span class="code">C3</span><span class="name">花匠</span></div>
+      <div class="context">每天浇一点 · 复利</div>
+    </div>
+
+    <!-- C4 船长 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, -8) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- telescope -->
+        <rect x="98" y="35" width="18" height="6" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4" rx="1"/>
+        <!-- boat -->
+        <path d="M 20 100 L 100 100 L 90 112 L 30 112 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.8" stroke-linejoin="round"/>
+        <line x1="35" y1="112" x2="85" y2="112" stroke="#1a1614" stroke-width="1"/>
+      </svg>
+      <div class="label"><span class="code">C4</span><span class="name">船长</span></div>
+      <div class="context">拿望远镜远眺 · 远见</div>
+    </div>
+
+    <!-- C5 攀登者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- cliff wall on right -->
+        <path d="M 85 5 L 118 5 L 118 118 L 85 118 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.5"/>
+        <line x1="85" y1="30" x2="95" y2="35" stroke="#1a1614" stroke-width="1"/>
+        <line x1="85" y1="55" x2="93" y2="52" stroke="#1a1614" stroke-width="1"/>
+        <line x1="85" y1="80" x2="92" y2="83" stroke="#1a1614" stroke-width="1"/>
+        <!-- star clinging -->
+        <g transform="translate(-25, 5) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- one leg dangling -->
+        <line x1="72" y1="98" x2="80" y2="118" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">C5</span><span class="name">攀登者</span></div>
+      <div class="context">抓岩壁 · 挑战 · 上限</div>
+    </div>
+
+    <!-- C6 摊主 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <g transform="translate(0, -14) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- stall -->
+        <rect x="10" y="82" width="100" height="20" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.6"/>
+        <line x1="10" y1="82" x2="10" y2="112" stroke="#1a1614" stroke-width="1.6"/>
+        <line x1="110" y1="82" x2="110" y2="112" stroke="#1a1614" stroke-width="1.6"/>
+        <!-- items on stall -->
+        <rect x="20" y="72" width="8" height="10" fill="none" stroke="#1a1614" stroke-width="1"/>
+        <circle cx="45" cy="77" r="4" fill="none" stroke="#1a1614" stroke-width="1"/>
+        <rect x="65" y="72" width="10" height="10" fill="none" stroke="#1a1614" stroke-width="1"/>
+      </svg>
+      <div class="label"><span class="code">C6</span><span class="name">摊主</span></div>
+      <div class="context">Side project · 独立</div>
+    </div>
+
+    <!-- C7 钓鱼者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <g transform="translate(-14, 22) scale(0.82)">
+          <use href="#star"/>
+        </g>
+        <!-- fishing rod -->
+        <line x1="82" y1="52" x2="118" y2="20" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="118" y1="20" x2="115" y2="90" stroke="#1a1614" stroke-width="0.8"/>
+        <!-- water waves -->
+        <path d="M 20 105 Q 30 100 40 105 Q 50 110 60 105 Q 70 100 80 105 Q 90 110 100 105" fill="none" stroke="#2e5c8a" stroke-width="1" opacity="0.6"/>
+      </svg>
+      <div class="label"><span class="code">C7</span><span class="name">钓鱼者</span></div>
+      <div class="context">等待 · 耐心</div>
+    </div>
+
+    <!-- C8 天平 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, 20)">
+          <use href="#star"/>
+        </g>
+        <!-- balance beam -->
+        <line x1="20" y1="30" x2="100" y2="30" stroke="#1a1614" stroke-width="2"/>
+        <line x1="60" y1="30" x2="60" y2="52" stroke="#1a1614" stroke-width="2"/>
+        <!-- left pan -->
+        <line x1="20" y1="30" x2="20" y2="42" stroke="#1a1614" stroke-width="1"/>
+        <path d="M 10 42 L 30 42 L 25 50 L 15 50 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="20" y="49" text-anchor="middle" font-size="8" fill="#2e5c8a" font-family="'Caveat',cursive">A</text>
+        <!-- right pan -->
+        <line x1="100" y1="30" x2="100" y2="42" stroke="#1a1614" stroke-width="1"/>
+        <path d="M 90 42 L 110 42 L 105 50 L 95 50 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="100" y="49" text-anchor="middle" font-size="8" fill="#d64545" font-family="'Caveat',cursive">B</text>
+      </svg>
+      <div class="label"><span class="code">C8</span><span class="name">天平使用者</span></div>
+      <div class="context">决策 · 选 A 还是 B</div>
+    </div>
+
+    <!-- C9 撑伞者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- umbrella -->
+        <path d="M 30 30 Q 60 8 90 30" fill="#1a1614" stroke="#1a1614" stroke-width="1.5"/>
+        <line x1="60" y1="30" x2="60" y2="14" stroke="#1a1614" stroke-width="1.4"/>
+        <line x1="30" y1="30" x2="90" y2="30" stroke="#1a1614" stroke-width="0.8"/>
+        <!-- rain lines -->
+        <line x1="15" y1="35" x2="18" y2="45" stroke="#2e5c8a" stroke-width="1"/>
+        <line x1="105" y1="35" x2="102" y2="45" stroke="#2e5c8a" stroke-width="1"/>
+        <line x1="10" y1="55" x2="13" y2="65" stroke="#2e5c8a" stroke-width="1"/>
+        <line x1="110" y1="55" x2="107" y2="65" stroke="#2e5c8a" stroke-width="1"/>
+        <g transform="translate(0, 12)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">C9</span><span class="name">撑伞者</span></div>
+      <div class="context">自我保护 · 情绪管理</div>
+    </div>
+
+    <!-- C10 编织者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- yarn ball above hands -->
+        <circle cx="60" cy="75" r="8" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <path d="M 55 72 Q 62 70 65 76 M 55 78 Q 62 76 65 82" fill="none" stroke="#1a1614" stroke-width="0.8"/>
+        <!-- yarn thread trailing down -->
+        <path d="M 62 82 Q 60 100 65 118" fill="none" stroke="#1a1614" stroke-width="1"/>
+      </svg>
+      <div class="label"><span class="code">C10</span><span class="name">编织者</span></div>
+      <div class="context">慢积累 · 关系维护</div>
+    </div>
+
+    <!-- C11 挖坑者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(-10, 22) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <!-- shovel -->
+        <line x1="82" y1="66" x2="102" y2="90" stroke="#1a1614" stroke-width="1.8"/>
+        <path d="M 100 88 L 108 96 L 112 92 L 104 84 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <!-- pile of dirt -->
+        <path d="M 12 108 Q 22 96 32 108" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <!-- hole -->
+        <ellipse cx="60" cy="108" rx="18" ry="4" fill="#1a1614" opacity="0.35"/>
+      </svg>
+      <div class="label"><span class="code">C11</span><span class="name">挖坑者</span></div>
+      <div class="context">深挖 · 埋伏笔</div>
+    </div>
+
+    <!-- C12 拼图者 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- big puzzle with missing piece -->
+        <rect x="55" y="8" width="55" height="30" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.6"/>
+        <line x1="82" y1="8" x2="82" y2="38" stroke="#1a1614" stroke-width="0.8"/>
+        <line x1="55" y1="23" x2="110" y2="23" stroke="#1a1614" stroke-width="0.8"/>
+        <!-- gap in top-left -->
+        <rect x="55" y="8" width="14" height="15" fill="#fbf8f0" stroke="#1a1614" stroke-width="1.6" stroke-dasharray="2 1"/>
+        <g transform="translate(0, 22)">
+          <use href="#star"/>
+        </g>
+        <!-- puzzle piece held up -->
+        <rect x="10" y="20" width="14" height="15" fill="#e8c98a" stroke="#1a1614" stroke-width="1.4"/>
+      </svg>
+      <div class="label"><span class="code">C12</span><span class="name">拼图者</span></div>
+      <div class="context">补齐 · 就差一片</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- D · 表情包基底                                -->
+<!-- ============================================ -->
+<section class="category" id="D">
+  <h2><span class="badge">D</span> 表情包基底</h2>
+  <div class="sub">8 款情绪 · 姿势 + 头顶符号 · 可做表情包</div>
+  <div class="grid">
+
+    <!-- D1 疑惑 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text x="60" y="16" text-anchor="middle" font-size="22" fill="#d64545" font-family="'Caveat',cursive">?</text>
+        <g transform="translate(0, 8)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">D1</span><span class="name">疑惑</span></div>
+      <div class="context">头顶 ? · 追问</div>
+    </div>
+
+    <!-- D2 惊讶 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text x="60" y="16" text-anchor="middle" font-size="22" fill="#e07b2c" font-family="'Caveat',cursive">!</text>
+        <g transform="translate(0, 8) rotate(-8 60 60)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">D2</span><span class="name">惊讶</span></div>
+      <div class="context">头顶 ! · 后仰</div>
+    </div>
+
+    <!-- D3 走神 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text x="60" y="16" text-anchor="middle" font-size="14" fill="#1a1614" opacity="0.6" font-family="'Caveat',cursive">…</text>
+        <g transform="translate(0, 8)">
+          <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+                fill="#e8c98a" stroke="#1a1614" stroke-width="2.4" stroke-linejoin="round"/>
+          <!-- closed eyes -->
+          <line x1="49" y1="41" x2="55" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="65" y1="41" x2="71" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="47" y1="90" x2="44" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="73" y1="90" x2="76" y2="108" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">D3</span><span class="name">走神</span></div>
+      <div class="context">头顶 … · 半闭眼</div>
+    </div>
+
+    <!-- D4 灵感 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- lightbulb -->
+        <circle cx="60" cy="14" r="8" fill="#e8c98a" stroke="#c89a3a" stroke-width="1.5"/>
+        <line x1="56" y1="20" x2="64" y2="20" stroke="#1a1614" stroke-width="1"/>
+        <line x1="56" y1="23" x2="64" y2="23" stroke="#1a1614" stroke-width="1"/>
+        <!-- rays -->
+        <line x1="48" y1="7" x2="44" y2="3" stroke="#c89a3a" stroke-width="1"/>
+        <line x1="72" y1="7" x2="76" y2="3" stroke="#c89a3a" stroke-width="1"/>
+        <line x1="60" y1="3" x2="60" y2="0" stroke="#c89a3a" stroke-width="1"/>
+        <g transform="translate(0, -8)">
+          <use href="#star"/>
+        </g>
+        <line x1="35" y1="105" x2="42" y2="112" stroke="#1a1614" stroke-width="1.4"/>
+        <line x1="85" y1="105" x2="78" y2="112" stroke="#1a1614" stroke-width="1.4"/>
+      </svg>
+      <div class="label"><span class="code">D4</span><span class="name">灵感</span></div>
+      <div class="context">头顶 💡 · 弹跳</div>
+    </div>
+
+    <!-- D5 共情 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <path d="M 60 22 Q 52 14 45 22 Q 45 30 60 42 Q 75 30 75 22 Q 68 14 60 22" fill="#d64545"/>
+        <g transform="translate(0, 12)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">D5</span><span class="name">共情</span></div>
+      <div class="context">头顶 ♡ · 温柔</div>
+    </div>
+
+    <!-- D6 睡着 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="rotate(90 60 60) translate(0, 15) scale(0.85)">
+          <path d="M 60 17 L 71 45 L 102 47 L 78 66 L 87 96 L 60 79 L 33 96 L 42 66 L 18 47 L 49 45 Z"
+                fill="#e8c98a" stroke="#1a1614" stroke-width="2.4" stroke-linejoin="round"/>
+          <line x1="49" y1="41" x2="55" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+          <line x1="65" y1="41" x2="71" y2="41" stroke="#1a1614" stroke-width="1.6" stroke-linecap="round"/>
+        </g>
+        <text x="95" y="28" font-size="14" fill="#c89a3a" font-family="'Caveat',cursive">Zzz</text>
+        <line x1="15" y1="102" x2="105" y2="102" stroke="#1a1614" stroke-width="0.8" opacity="0.35"/>
+      </svg>
+      <div class="label"><span class="code">D6</span><span class="name">睡着</span></div>
+      <div class="context">Zzz · 今天到此为止</div>
+    </div>
+
+    <!-- D7 尴尬 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <text class="dreamer-text" text-anchor="middle" x="60" y="10"><textPath href="#dreamer-path">Dreamer</textPath></text>
+        <use href="#star"/>
+        <!-- sweat drop -->
+        <path d="M 100 22 Q 96 28 100 34 Q 104 28 100 22" fill="#2e5c8a" opacity="0.7"/>
+      </svg>
+      <div class="label"><span class="code">D7</span><span class="name">尴尬</span></div>
+      <div class="context">一颗汗滴 · 尬</div>
+    </div>
+
+    <!-- D8 兴奋 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- radial glow lines -->
+        <g stroke="#c89a3a" stroke-width="1.5" stroke-linecap="round">
+          <line x1="60" y1="6" x2="60" y2="12"/>
+          <line x1="24" y1="30" x2="30" y2="34"/>
+          <line x1="96" y1="30" x2="90" y2="34"/>
+          <line x1="14" y1="60" x2="22" y2="60"/>
+          <line x1="106" y1="60" x2="98" y2="60"/>
+          <line x1="24" y1="90" x2="30" y2="86"/>
+          <line x1="96" y1="90" x2="90" y2="86"/>
+        </g>
+        <use href="#star"/>
+      </svg>
+      <div class="label"><span class="code">D8</span><span class="name">兴奋</span></div>
+      <div class="context">全身发光 · Yay</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================ -->
+<!-- E · 求职专题                                  -->
+<!-- ============================================ -->
+<section class="category" id="E">
+  <h2><span class="badge">E</span> 求职 / 职场专题</h2>
+  <div class="sub">面试、offer、layoff、跳槽、独立、加班</div>
+  <div class="grid">
+
+    <!-- E1 面试前 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- door -->
+        <rect x="70" y="15" width="45" height="95" fill="#f2ecdc" stroke="#1a1614" stroke-width="2"/>
+        <circle cx="105" cy="65" r="1.8" fill="#1a1614"/>
+        <g transform="translate(-25, 0)">
+          <use href="#star"/>
+        </g>
+        <text x="45" y="18" text-anchor="middle" font-size="12" fill="#e07b2c" font-family="'Caveat',cursive">!</text>
+      </svg>
+      <div class="label"><span class="code">E1</span><span class="name">面试前</span></div>
+      <div class="context">门前深呼吸</div>
+    </div>
+
+    <!-- E2 拿到 offer -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, -10)">
+          <use href="#star"/>
+        </g>
+        <!-- envelope in raised hand -->
+        <rect x="100" y="20" width="16" height="12" fill="white" stroke="#1a1614" stroke-width="1.5"/>
+        <path d="M 100 20 L 108 27 L 116 20" fill="none" stroke="#1a1614" stroke-width="1"/>
+        <line x1="102" y1="47" x2="105" y2="26" stroke="#1a1614" stroke-width="1.6"/>
+        <!-- jump lines -->
+        <line x1="35" y1="105" x2="42" y2="112" stroke="#1a1614" stroke-width="1.4"/>
+        <line x1="85" y1="105" x2="78" y2="112" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="60" y="18" text-anchor="middle" font-size="14" fill="#d64545" font-family="'Caveat',cursive">!</text>
+      </svg>
+      <div class="label"><span class="code">E2</span><span class="name">拿到 offer</span></div>
+      <div class="context">举信封蹦</div>
+    </div>
+
+    <!-- E3 谈薪 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <g transform="translate(0, 20)">
+          <use href="#star"/>
+        </g>
+        <line x1="20" y1="30" x2="100" y2="30" stroke="#1a1614" stroke-width="2"/>
+        <line x1="60" y1="30" x2="60" y2="52" stroke="#1a1614" stroke-width="2"/>
+        <line x1="20" y1="30" x2="20" y2="40" stroke="#1a1614" stroke-width="1"/>
+        <path d="M 12 40 L 28 40 L 25 47 L 15 47 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="20" y="46" text-anchor="middle" font-size="7" fill="#2e5c8a" font-family="'Caveat',cursive">Base</text>
+        <line x1="100" y1="30" x2="100" y2="44" stroke="#1a1614" stroke-width="1"/>
+        <path d="M 92 44 L 108 44 L 105 52 L 95 52 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="100" y="50" text-anchor="middle" font-size="7" fill="#d64545" font-family="'Caveat',cursive">RSU</text>
+      </svg>
+      <div class="label"><span class="code">E3</span><span class="name">谈薪</span></div>
+      <div class="context">Base vs RSU 权衡</div>
+    </div>
+
+    <!-- E4 悬崖边 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- cliff -->
+        <path d="M 5 95 L 55 95 L 52 105 L 45 118 L 5 118 Z" fill="#f2ecdc" stroke="#1a1614" stroke-width="2"/>
+        <line x1="10" y1="98" x2="55" y2="98" stroke="#1a1614" stroke-width="0.8"/>
+        <line x1="15" y1="108" x2="35" y2="108" stroke="#1a1614" stroke-width="0.8"/>
+        <g transform="translate(-30, 3) scale(0.85)">
+          <use href="#star"/>
+        </g>
+        <text x="90" y="20" text-anchor="middle" font-size="14" fill="#d64545" font-family="'Caveat',cursive">?</text>
+      </svg>
+      <div class="label"><span class="code">E4</span><span class="name">悬崖边</span></div>
+      <div class="context">Layoff · 下一步</div>
+    </div>
+
+    <!-- E5 换赛道 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- two lanes -->
+        <line x1="15" y1="105" x2="55" y2="105" stroke="#1a1614" stroke-width="2"/>
+        <line x1="65" y1="98" x2="105" y2="98" stroke="#1a1614" stroke-width="2"/>
+        <text x="35" y="118" text-anchor="middle" font-size="7" fill="#2e5c8a" font-family="'Caveat',cursive">A</text>
+        <text x="85" y="112" text-anchor="middle" font-size="7" fill="#d64545" font-family="'Caveat',cursive">B</text>
+        <g transform="translate(0, 0) rotate(15 60 60)">
+          <use href="#star"/>
+        </g>
+        <!-- dashed arrow between lanes -->
+        <path d="M 50 105 Q 60 90 65 98" fill="none" stroke="#e07b2c" stroke-width="1.5" stroke-dasharray="3 2"/>
+      </svg>
+      <div class="label"><span class="code">E5</span><span class="name">换赛道</span></div>
+      <div class="context">跨到另一条路</div>
+    </div>
+
+    <!-- E6 加班到深夜 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- crescent moon -->
+        <path d="M 100 14 A 8 8 0 1 0 108 22 A 6 6 0 1 1 100 14" fill="#c89a3a"/>
+        <use href="#star"/>
+        <!-- surrounding rects (files/screens) -->
+        <rect x="6" y="30" width="14" height="10" fill="none" stroke="#1a1614" stroke-width="1.2"/>
+        <rect x="4" y="55" width="14" height="10" fill="none" stroke="#1a1614" stroke-width="1.2"/>
+        <rect x="8" y="80" width="14" height="10" fill="none" stroke="#1a1614" stroke-width="1.2"/>
+        <rect x="100" y="55" width="14" height="10" fill="none" stroke="#1a1614" stroke-width="1.2"/>
+        <rect x="102" y="80" width="14" height="10" fill="none" stroke="#1a1614" stroke-width="1.2"/>
+      </svg>
+      <div class="label"><span class="code">E6</span><span class="name">加班深夜</span></div>
+      <div class="context">被文件包围 · 内耗</div>
+    </div>
+
+    <!-- E7 跳槽犹豫 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- two thought bubbles overhead -->
+        <ellipse cx="35" cy="18" rx="16" ry="8" fill="white" stroke="#1a1614" stroke-width="1.5"/>
+        <text x="35" y="21" text-anchor="middle" font-size="8" fill="#2e5c8a" font-family="'Caveat',cursive">A 家</text>
+        <ellipse cx="88" cy="18" rx="16" ry="8" fill="white" stroke="#1a1614" stroke-width="1.5"/>
+        <text x="88" y="21" text-anchor="middle" font-size="8" fill="#d64545" font-family="'Caveat',cursive">B 家</text>
+        <line x1="40" y1="26" x2="55" y2="35" stroke="#1a1614" stroke-width="0.8"/>
+        <line x1="80" y1="26" x2="68" y2="35" stroke="#1a1614" stroke-width="0.8"/>
+        <g transform="translate(0, 15)">
+          <use href="#star"/>
+        </g>
+      </svg>
+      <div class="label"><span class="code">E7</span><span class="name">跳槽犹豫</span></div>
+      <div class="context">头顶两个泡泡</div>
+    </div>
+
+    <!-- E8 敲自己的门 -->
+    <div class="card">
+      <svg viewBox="0 0 120 120">
+        <!-- sign board -->
+        <rect x="60" y="10" width="55" height="12" fill="#e8c98a" stroke="#1a1614" stroke-width="1.4"/>
+        <text x="87" y="19" text-anchor="middle" font-size="8" fill="#1a1614" font-family="'Caveat',cursive">Dreamer 工作室</text>
+        <!-- door -->
+        <rect x="70" y="22" width="45" height="90" fill="#f2ecdc" stroke="#1a1614" stroke-width="2"/>
+        <circle cx="105" cy="68" r="1.8" fill="#1a1614"/>
+        <g transform="translate(-25, 0)">
+          <use href="#star"/>
+        </g>
+        <!-- arm knocking -->
+        <line x1="82" y1="47" x2="72" y2="45" stroke="#1a1614" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <div class="label"><span class="code">E8</span><span class="name">敲自己的门</span></div>
+      <div class="context">独立 · 创业</div>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <h3>怎么用这个页面？</h3>
+  <p>
+    1. 扫一遍找到你想要的动作，记下编号（比如 <code>C3</code>）。<br>
+    2. 打开 <a href="./references/action-library.md">action-library.md</a>，找到对应卡片，复制它的"动作段"。<br>
+    3. 打开 <a href="./references/prompt-template.md">prompt-template.md</a>（主 prompt 骨架），把"动作段"塞到 <code>Single visual concept</code> 和 <code>Composition</code> 部分。<br>
+    4. 复制完整 prompt → ChatGPT image / Nano Banana / MJ 里跑图。
+  </p>
+  <p>
+    <strong>更懒的方式</strong>：直接告诉 Claude —— <br>
+    &nbsp;&nbsp;<code>"用小星妍 skill，动作 C3，给我配一张图，主题是复利"</code><br>
+    Claude 会自动拼装完整 prompt 给你。
+  </p>
+  <p style="margin-top: 24px; opacity: 0.7; font-size: 12px;">
+    ✦ 小星妍 · DreamerStar · action library preview · 48 actions
+  </p>
+</footer>
+
+</body>
+</html>
