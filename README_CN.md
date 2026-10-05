@@ -41,6 +41,7 @@ Ian Xiaohei Illustrations 提供了一套把中文文章转成概念性编辑插
 
 - 完整角色规范：形态、性格、姿态、签名、配角关系与常见崩坏都有明确约束。
 - 由 5 个意图族群、16 个状态符号组成的动态表达词典，用来说明角色此刻在想什么。
+- 由 5 类、48 个可复用动作组成的动作库，从五角星专属隐喻到职场情境，都能直接嵌入主 Prompt 骨架。
 - 面向 3:4、4:3、1:1 的量化构图规则，包括留白率、反差轴、标签上限和排线位置。
 - 用于跨主题、跨图像模型保持视觉身份的 12 区块 Prompt 结构。
 - P0/P1/P2 分级质量控制，明确何时重画、局部修改或接受轻微偏差。
@@ -56,10 +57,12 @@ dreamer-star-ip/
 │   ├── style-dna.md                风格 DNA · 颜色 · 留白率 · 排线语言
 │   ├── xiaoxingyan-ip.md           小星妍 IP 完整规格：形态 / 姿态库 / 禁忌
 │   ├── status-glyphs.md            16 个头顶状态符号 · 5 个族群 · 挑选规则
+│   ├── action-library.md            48 个可复用动作 · 5 类场景
 │   ├── composition-patterns.md     构图哲学 · 反差抓手 · 尺寸规则
 │   ├── prompt-template.md          单张图 12 区块英文 prompt 模板
 │   └── qa-checklist.md             生成后 QA 清单 + 反 slop 规则
 ├── example/                        9 张成品图 · README 九宫格展示
+├── action-library-preview.html     动作库可视化浏览页
 ├── THIRD_PARTY_NOTICES.md          上游来源与许可证声明
 └── examples/
     ├── ai-era-product-interview-v6.2.md   7 张 v6.2 实例（含跳跃收尾图）
@@ -84,6 +87,16 @@ ln -s "$(pwd)" "$CODEX_HOME/skills/dreamer-star-ip"
 ### 手动用作 prompt 库
 
 不装成 skill 也行 —— 直接抄 [`examples/ai-era-product-interview-v6.2.md`](examples/ai-era-product-interview-v6.2.md) 里的 prompt 喂给你的图像模型（GPT-image / Nano Banana / Midjourney）。
+
+### 从动作库搭建场景
+
+打开 [`action-library-preview.html`](action-library-preview.html) 可视化浏览动作，或阅读 [`references/action-library.md`](references/action-library.md) 查看完整规格。
+
+1. 根据主题从 48 个动作中挑一个。
+2. 把对应的“动作段”复制到主 Prompt 模板的 `Single visual concept` 和 `Composition` 部分。
+3. 补充 1–2 个简短中文标签，生成后再按 QA 清单检查。
+
+动作库分为五角星专属动作、通用姿势、情境套装、表情包基底、求职职场专题 5 类。
 
 ## 示例
 

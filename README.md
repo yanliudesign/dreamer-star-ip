@@ -41,6 +41,7 @@ Ian Xiaohei Illustrations provides a general workflow for turning Chinese writin
 
 - A complete character specification covering geometry, personality, poses, signatures, companion roles, and failure modes.
 - A 16-glyph state vocabulary across five intent families for expressing what the character is thinking or feeling.
+- A library of 48 reusable actions across five categories, from star-specific visual metaphors to workplace scenarios, each ready to drop into the main prompt structure.
 - Quantified composition rules for 3:4, 4:3, and 1:1 formats, including negative-space ratios, contrast axes, label limits, and hatching placement.
 - A 12-block prompt structure designed to preserve the same visual identity across topics and image models.
 - Tiered P0/P1/P2 quality control for deciding when to regenerate, edit locally, or accept a minor variation.
@@ -56,10 +57,12 @@ dreamer-star-ip/
 │   ├── style-dna.md                Visual DNA, color, negative space, and hatching
 │   ├── xiaoxingyan-ip.md           Complete character specification and pose library
 │   ├── status-glyphs.md            16 status glyphs across five families
+│   ├── action-library.md            48 reusable actions across five categories
 │   ├── composition-patterns.md     Composition principles, contrast hooks, and formats
 │   ├── prompt-template.md          12-block English prompt template
 │   └── qa-checklist.md             Post-generation QA and anti-slop checklist
 ├── example/                        Nine finished images shown in the gallery below
+├── action-library-preview.html     Visual index for browsing the action library
 ├── THIRD_PARTY_NOTICES.md          Upstream attribution and license notice
 └── examples/
     ├── ai-era-product-interview-v6.2.md   Seven v6.2 prompt examples
@@ -84,6 +87,16 @@ Then start a new Codex conversation and say: `Use dreamer-star-ip to illustrate 
 ### Use as a prompt library
 
 You can also copy a prompt from [`examples/ai-era-product-interview-v6.2.md`](examples/ai-era-product-interview-v6.2.md) into an image model such as GPT Image, Nano Banana, or Midjourney.
+
+### Build a scene from the action library
+
+Open [`action-library-preview.html`](action-library-preview.html) to browse the action library visually, or read [`references/action-library.md`](references/action-library.md) for the complete specifications.
+
+1. Choose one of the 48 actions based on your topic.
+2. Copy its action description into the `Single visual concept` and `Composition` sections of the main prompt template.
+3. Add one or two short Chinese labels, then generate and review the result against the QA checklist.
+
+The five categories cover star-specific actions, general poses, narrative scenario sets, reaction-image foundations, and job-search or workplace situations.
 
 ## Examples
 
