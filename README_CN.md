@@ -29,6 +29,13 @@
 
 **不适合**：真人封面（→ 用其它 skill）、3D 商业插画、PPT 信息图 / 架构图。
 
+## 它会产出什么
+
+- 一篇文章中 4–8 个值得配图的位置，每个位置都对应具体段落和认知锚点。
+- 每个场景一份完整的 12 区块英文 Prompt，包含构图、角色动作、标签、颜色规则和反 slop 约束。
+- 当前 Agent 有图像生成工具时直接生成成图；没有时交付可复制到 GPT Image、Nano Banana、Midjourney 等图像模型的完整 Prompt。
+- 每张图附一段放置说明，解释应该放在哪一段之后，以及视觉隐喻如何服务文章观点。
+
 ## 参考与致谢
 
 本项目参考了 Ian 的 [Ian Xiaohei Illustrations](https://github.com/helloianneo/ian-xiaohei-illustrations) 在中文文章认知锚点提炼、shot list 和编辑插画工作流上的实践。感谢 Ian 对这套方法的开源分享。
@@ -57,7 +64,7 @@ dreamer-star-ip/
 │   ├── style-dna.md                风格 DNA · 颜色 · 留白率 · 排线语言
 │   ├── xiaoxingyan-ip.md           小星妍 IP 完整规格：形态 / 姿态库 / 禁忌
 │   ├── status-glyphs.md            16 个头顶状态符号 · 5 个族群 · 挑选规则
-│   ├── action-library.md            48 个可复用动作 · 5 类场景
+│   ├── action-library.md           48 个可复用动作 · 5 类场景
 │   ├── composition-patterns.md     构图哲学 · 反差抓手 · 尺寸规则
 │   ├── prompt-template.md          单张图 12 区块英文 prompt 模板
 │   └── qa-checklist.md             生成后 QA 清单 + 反 slop 规则
@@ -73,16 +80,46 @@ dreamer-star-ip/
 
 ## 怎么用
 
-### 装成 Codex skill
+### 1. 装成 Codex skill
 
 ```bash
+git clone https://github.com/yanliudesign/dreamer-star-ip.git
+cd dreamer-star-ip
+
 # Codex 全局（默认安装到 ~/.codex/skills）
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 mkdir -p "$CODEX_HOME/skills"
 ln -s "$(pwd)" "$CODEX_HOME/skills/dreamer-star-ip"
 ```
 
-之后在 Codex 新对话里说：「用小星妍风格给我这篇文章配图」/「dreamer-star-ip 生成一个思考的 pose」，就会自动触发。
+### 2. 选择使用方式
+
+**只规划配图，暂不生图**
+
+```text
+使用 $dreamer-star-ip 分析下面这篇文章，先不要生成图片。
+输出约 5 张图的 shot list，每张写清楚放置位置、认知锚点、视觉隐喻、
+反差抓手、小星妍动作、头顶状态符号和建议标签。
+
+<粘贴文章>
+```
+
+**直接生成整组文章配图**
+
+```text
+使用 $dreamer-star-ip 为下面这篇文章生成 4 张 3:4 编辑插画。
+每张使用不同的视觉隐喻，逐张生成并完成 QA，同时交付放置说明和可复现 Prompt。
+
+<粘贴文章>
+```
+
+**为单个概念生成一张图**
+
+```text
+使用 $dreamer-star-ip 为这句话生成一张插画：
+“信任不是喊出来的，而是一块证据一块证据铺过去。”
+从动作库挑选合适动作，不要复刻已有示例构图。
+```
 
 ### 手动用作 prompt 库
 
@@ -97,6 +134,8 @@ ln -s "$(pwd)" "$CODEX_HOME/skills/dreamer-star-ip"
 3. 补充 1–2 个简短中文标签，生成后再按 QA 清单检查。
 
 动作库分为五角星专属动作、通用姿势、情境套装、表情包基底、求职职场专题 5 类。
+
+> 是否能直接生图取决于当前 Agent 可用的工具。没有图像生成工具时，skill 会交付完整 Prompt，而不会假装图片已经生成。
 
 ## 示例
 
