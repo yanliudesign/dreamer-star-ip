@@ -80,19 +80,82 @@ dreamer-star-ip/
 
 ## Usage
 
-### 1. Install as a Codex skill
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/yanliudesign/dreamer-star-ip.git
 cd dreamer-star-ip
+```
 
-# Global Codex skill (defaults to ~/.codex/skills)
+### 2. Install for your agent
+
+The repository root is already a complete skill directory. Choose the command for your agent:
+
+| Agent | Personal skill directory | Invoke with |
+|---|---|---|
+| [Claude Code](https://code.claude.com/docs/en/agent-sdk/skills) | `~/.claude/skills/` | `/dreamer-star-ip` |
+| [Codex](https://developers.openai.com/codex/skills/) | `$CODEX_HOME/skills/` (default: `~/.codex/skills/`) | `$dreamer-star-ip` |
+| [OpenCode](https://opencode.ai/v2/docs/skills) | `~/.config/opencode/skills/` | Ask it to use `dreamer-star-ip` |
+| [OpenClaw](https://docs.openclaw.ai/tools/skills) | `$OPENCLAW_STATE_DIR/skills/` (default: `~/.openclaw/skills/`) | `/dreamer-star-ip` |
+| [Hermes Agent](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) | `~/.hermes/skills/` | `/dreamer-star-ip` |
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+```bash
+mkdir -p "$HOME/.claude/skills"
+ln -s "$(pwd)" "$HOME/.claude/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+```bash
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 mkdir -p "$CODEX_HOME/skills"
 ln -s "$(pwd)" "$CODEX_HOME/skills/dreamer-star-ip"
 ```
 
-### 2. Choose a workflow
+</details>
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+```bash
+mkdir -p "$HOME/.config/opencode/skills"
+ln -s "$(pwd)" "$HOME/.config/opencode/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>OpenClaw</strong></summary>
+
+```bash
+OPENCLAW_STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+mkdir -p "$OPENCLAW_STATE_DIR/skills"
+ln -s "$(pwd)" "$OPENCLAW_STATE_DIR/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>Hermes Agent</strong></summary>
+
+```bash
+mkdir -p "$HOME/.hermes/skills"
+ln -s "$(pwd)" "$HOME/.hermes/skills/dreamer-star-ip"
+```
+
+</details>
+
+These macOS/Linux commands create a symbolic link, so `git pull` in the cloned repository updates the installed skill. Restart the agent or begin a new session after installation. For project-only use, place the skill under `.claude/skills/` (Claude Code), `.opencode/skills/` (OpenCode), or `skills/` (OpenClaw) inside that project.
+
+### 3. Choose a workflow
+
+The examples below use Codex's `$dreamer-star-ip` syntax. With Claude Code, OpenClaw, or Hermes, use `/dreamer-star-ip` instead. In OpenCode, ask the agent to use `dreamer-star-ip`.
 
 **Plan illustrations without generating images**
 

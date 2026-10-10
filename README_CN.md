@@ -80,19 +80,82 @@ dreamer-star-ip/
 
 ## 怎么用
 
-### 1. 装成 Codex skill
+### 1. 克隆仓库
 
 ```bash
 git clone https://github.com/yanliudesign/dreamer-star-ip.git
 cd dreamer-star-ip
+```
 
-# Codex 全局（默认安装到 ~/.codex/skills）
+### 2. 安装到你的 Agent
+
+仓库根目录本身就是完整的 skill 目录。按你使用的 Agent 选择命令：
+
+| Agent | 个人 skill 目录 | 调用方式 |
+|---|---|---|
+| [Claude Code](https://code.claude.com/docs/en/agent-sdk/skills) | `~/.claude/skills/` | `/dreamer-star-ip` |
+| [Codex](https://developers.openai.com/codex/skills/) | `$CODEX_HOME/skills/`（默认：`~/.codex/skills/`） | `$dreamer-star-ip` |
+| [OpenCode](https://opencode.ai/v2/docs/skills) | `~/.config/opencode/skills/` | 告诉 Agent 使用 `dreamer-star-ip` |
+| [OpenClaw](https://docs.openclaw.ai/tools/skills) | `$OPENCLAW_STATE_DIR/skills/`（默认：`~/.openclaw/skills/`） | `/dreamer-star-ip` |
+| [Hermes Agent](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills/) | `~/.hermes/skills/` | `/dreamer-star-ip` |
+
+<details>
+<summary><strong>Claude Code</strong></summary>
+
+```bash
+mkdir -p "$HOME/.claude/skills"
+ln -s "$(pwd)" "$HOME/.claude/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>Codex</strong></summary>
+
+```bash
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 mkdir -p "$CODEX_HOME/skills"
 ln -s "$(pwd)" "$CODEX_HOME/skills/dreamer-star-ip"
 ```
 
-### 2. 选择使用方式
+</details>
+
+<details>
+<summary><strong>OpenCode</strong></summary>
+
+```bash
+mkdir -p "$HOME/.config/opencode/skills"
+ln -s "$(pwd)" "$HOME/.config/opencode/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>OpenClaw</strong></summary>
+
+```bash
+OPENCLAW_STATE_DIR="${OPENCLAW_STATE_DIR:-$HOME/.openclaw}"
+mkdir -p "$OPENCLAW_STATE_DIR/skills"
+ln -s "$(pwd)" "$OPENCLAW_STATE_DIR/skills/dreamer-star-ip"
+```
+
+</details>
+
+<details>
+<summary><strong>Hermes Agent</strong></summary>
+
+```bash
+mkdir -p "$HOME/.hermes/skills"
+ln -s "$(pwd)" "$HOME/.hermes/skills/dreamer-star-ip"
+```
+
+</details>
+
+以上是 macOS/Linux 命令，通过软链接安装；之后在仓库中执行 `git pull`，安装的 skill 也会同步更新。安装后请重启 Agent 或开启新会话。只想在单个项目使用时，可以把 skill 放到项目内的 `.claude/skills/`（Claude Code）、`.opencode/skills/`（OpenCode）或 `skills/`（OpenClaw）。
+
+### 3. 选择使用方式
+
+下面示例使用 Codex 的 `$dreamer-star-ip` 写法。在 Claude Code、OpenClaw 或 Hermes 中请改用 `/dreamer-star-ip`；在 OpenCode 中直接告诉 Agent 使用 `dreamer-star-ip`。
 
 **只规划配图，暂不生图**
 
